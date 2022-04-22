@@ -66,14 +66,16 @@ function cancelAnimalActionButton() {
         cancelButton.id = 'cancel-button';
         cancelButton.className = 'btn btn-secondary';
         cancelButton.innerText = 'Cancelar';
+        cancelButton.type = 'button';
+        cancelButton.addEventListener('click', () => {
+          cancelButton.remove();
+          animalFormMode = 'create';
+          animalForm.reset();
+          changeActionAnimalButton();
+        });
         contentButtons.appendChild(cancelButton);
       }
-      cancelButton.addEventListener('click', () => {
-        cancelButton.remove();
-        animalForMode = 'create';
-        animalForm.reset();
-        changeActionAnimalButton();
-      });
+
       break;
     default:
       break;
