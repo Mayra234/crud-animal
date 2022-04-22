@@ -1,0 +1,28 @@
+{
+  "animals": [
+    {
+      "id": 1,
+      "name": "Lulu",
+      "age": 2,
+      "animal": "perro",
+      "species": "canino",
+      "birthDate": "2021-04-15"
+    },
+    {
+      "id": 2,
+      "name": "Minino",
+      "age": 1,
+      "animal": "gato",
+      "species": "felino",
+      "birthDate": "2020-04-15"
+    },
+    {
+      "id": 3,
+      "name": "Miel",
+      "age": 1,
+      "animal": "gato",
+      "species": "felino",
+      "birthDate": "2020-04-15"
+    }
+  ]
+}

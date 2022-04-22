@@ -1,9 +1,26 @@
+let animals = [];
+const animalApi = useAnimalApi();
 const animalForm = document.getElementById('animal-form');
 const fields = document.querySelectorAll('#animal-form .form-field');
 const animalTbody = document.getElementById('animal-table');
 const contentButtons = document.getElementById('content-buttons');
 const addButton = document.getElementById('add-animal');
 addButton.addEventListener('click', animalFormAction);
+
+const loader = document.getElementById('loader');
+
+const handleLoader = (status) => {
+  switch (status) {
+    case 'show':
+      loader.style.display = 'flex';
+      break;
+    case 'hide':
+      loader.style.display = 'none';
+      break;
+    default:
+      break;
+  }
+};
 
 let animalFormMode = 'create';
 let animalIndex = undefined;
@@ -135,9 +152,10 @@ function showAnimal(index) {
   modalTitle.innerText = animals[index].name;
 }
 
-function listAnimals() {
+async function listAnimals() {
+  handleLoader('show');
   animalTbody.innerHTML = '';
-
+  animals = await animalApi.list();
   animals.forEach((animal, index) => {
     const row = document.createElement('tr');
     row.innerHTML = `
@@ -170,5 +188,6 @@ function listAnimals() {
         `;
     animalTbody.appendChild(row);
   });
+  handleLoader('hide');
 }
 listAnimals();
