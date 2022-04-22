@@ -61,18 +61,19 @@ function cancelAnimalActionButton() {
     case 'update':
       if (document.getElementById('cancel-button') !== null) {
         return;
+      } else {
+        const cancelButton = document.createElement('button');
+        cancelButton.id = 'cancel-button';
+        cancelButton.className = 'btn btn-secondary';
+        cancelButton.innerText = 'Cancelar';
+        contentButtons.appendChild(cancelButton);
       }
-      const cancelButton = document.createElement('button');
-      cancelButton.id = 'cancel-button';
-      cancelButton.className = 'btn btn-secondary';
-      cancelButton.innerText = 'Cancelar';
       cancelButton.addEventListener('click', () => {
         cancelButton.remove();
         animalForMode = 'create';
         animalForm.reset();
         changeActionAnimalButton();
       });
-      contentButtons.appendChild(cancelButton);
       break;
     default:
       break;
