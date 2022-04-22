@@ -136,20 +136,25 @@ function loadAnimalInForm(index) {
 const modalHtmlElement = document.getElementById('view-animal');
 const boostrapModal = new bootstrap.Modal(modalHtmlElement);
 
-function showAnimal(index) {
+async function showAnimal(index) {
+  handleLoader('show');
+  const animal = await animalApi.read(animals[index].id);
+  //Llamar el api para mostrar el animal
   const modalTitle = document.querySelector('#view-animal .modal-title');
   const modalBody = document.querySelector('#view-animal .modal-body');
   boostrapModal.show();
   modalBody.innerHTML = `
       <ul>
-        <li><b>Nombre:</b> ${animals[index].name}</li>
-        <li><b>Edad:</b> ${animals[index].age}</li>
-        <li><b>Animal:</b> ${animals[index].animal}</li>
-        <li><b>Especie:</b> ${animals[index].species}</li>
-        <li><b>Fecha de nacimiento:</b> ${animals[index].birthDate}</li>
+        <li><b>Nombre:</b> ${animal.name}</li>
+        <li><b>Edad:</b> ${animal.age}</li>
+        <li><b>Animal:</b> ${animal.animal}</li>
+        <li><b>Especie:</b> ${animal.species}</li>
+        <li><b>Fecha de nacimiento:</b> ${animal.birthDate}</li>
+        <li><b>Descripción:</b><p>${animal.description}</p></li>
     </ul>
       `;
   modalTitle.innerText = animals[index].name;
+  handleLoader('hide');
 }
 
 async function listAnimals() {

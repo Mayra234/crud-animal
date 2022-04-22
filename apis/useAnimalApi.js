@@ -8,7 +8,14 @@ const useAnimalApi = () => {
     return response.json();
   };
 
+  const read = async (id) => {
+    //GET -> http://localhost:3000/animals/${id}
+    const response = await fetch(`${baseUrl}/animals/${id}`, { method: 'GET' });
+    return response.json();
+  };
+
   return {
     list,
+    read,
   };
 };

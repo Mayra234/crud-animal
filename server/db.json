@@ -6,7 +6,8 @@
       "age": 2,
       "animal": "perro",
       "species": "canino",
-      "birthDate": "2021-04-15"
+      "birthDate": "2021-04-15",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "age": 1,
       "animal": "gato",
       "species": "felino",
-      "birthDate": "2020-04-15"
+      "birthDate": "2020-04-15",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "age": 1,
       "animal": "gato",
       "species": "felino",
-      "birthDate": "2020-04-15"
+      "birthDate": "2020-04-15",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     }
   ]
 }
