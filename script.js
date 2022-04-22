@@ -101,18 +101,13 @@ function deleteAnimal(index) {
   listAnimals();
 }
 
-function RunFields() {
-  for (let key in currentAnimal) {
-  }
-}
-
 function loadAnimalInForm(index) {
   animalFormMode = 'update';
   animalIndex = index;
   currentAnimal = Object.assign({}, animals[index]);
 
   fields.forEach((field) => {
-    field.value = RunFields();
+    field.value = currentAnimal[field.name];
   });
   changeActionAnimalButton();
   cancelAnimalActionButton();
