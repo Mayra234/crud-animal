@@ -23,7 +23,7 @@ const handleLoader = (status) => {
 };
 
 let animalFormMode = 'create';
-let animalIndex = undefined;
+let animalId = undefined;
 
 let currentAnimal = {
   name: '',
@@ -99,32 +99,47 @@ function cancelAnimalActionButton() {
   }
 }
 
-function createAnimal() {
-  animals.push(Object.assign({}, currentAnimal));
+async function createAnimal() {
+  handleLoader('show');
+  const animal = await animalApi.create(currentAnimal);
+  animals.push({ ...animal });
   listAnimals();
   animalForm.reset();
+  handleLoader('hide');
 }
 
-function updateAnimal() {
-  animals[animalIndex] = Object.assign({}, currentAnimal);
+async function updateAnimal() {
+  handleLoader('show');
+  const animal = await animalApi.update(animalId, currentAnimal);
+  animals = animals.map((item) => {
+    if (item.id === animalId) {
+      return { ...animal };
+    }
+
+    return item;
+  });
   listAnimals();
   animalForm.reset();
   animalFormMode = 'create';
   changeActionAnimalButton();
   cancelAnimalActionButton();
+  handleLoader('hide');
 }
 
-function deleteAnimal(index) {
-  animals = animals.filter((_, i) => {
-    return i !== index;
+async function deleteAnimal(id) {
+  handleLoader('show');
+  await animalApi.remove(id);
+  animals = animals.filter((animal) => {
+    return animal.id !== id;
   });
   listAnimals();
+  handleLoader('hide');
 }
 
-function loadAnimalInForm(index) {
+function loadAnimalInForm(id) {
   animalFormMode = 'update';
-  animalIndex = index;
-  currentAnimal = Object.assign({}, animals[index]);
+  animalId = id;
+  currentAnimal = animals.find((animal) => animal.id === id);
 
   fields.forEach((field) => {
     field.value = currentAnimal[field.name];
@@ -136,9 +151,9 @@ function loadAnimalInForm(index) {
 const modalHtmlElement = document.getElementById('view-animal');
 const boostrapModal = new bootstrap.Modal(modalHtmlElement);
 
-async function showAnimal(index) {
+async function showAnimal(id) {
   handleLoader('show');
-  const animal = await animalApi.read(animals[index].id);
+  const animal = await animalApi.read(id);
   //Llamar el api para mostrar el animal
   const modalTitle = document.querySelector('#view-animal .modal-title');
   const modalBody = document.querySelector('#view-animal .modal-body');
@@ -153,18 +168,18 @@ async function showAnimal(index) {
         <li><b>Descripción:</b><p>${animal.description}</p></li>
     </ul>
       `;
-  modalTitle.innerText = animals[index].name;
+  modalTitle.innerText = animal.name;
   handleLoader('hide');
 }
 
-async function listAnimals() {
+async function listAnimals(firstLoad) {
   handleLoader('show');
   animalTbody.innerHTML = '';
-  animals = await animalApi.list();
-  animals.forEach((animal, index) => {
+  if (firstLoad) animals = await animalApi.list();
+  animals.forEach((animal) => {
     const row = document.createElement('tr');
     row.innerHTML = `
-        <th scope="row">${index + 1}</th>
+        <th scope="row">${animal.id}</th>
             <td>${animal.name}</td>
             <td>${animal.age}</td>
             <td>${animal.animal}</td>
@@ -174,19 +189,19 @@ async function listAnimals() {
                 <button
                     type="button"
                     class="btn btn-primary"
-                    onclick="loadAnimalInForm(${index})">
+                    onclick="loadAnimalInForm(${animal.id})">
                     Editar
                     </button>
                 <button
                     type="button"
                     class="btn btn-info text-white"
-                    onclick="showAnimal(${index})">
+                    onclick="showAnimal(${animal.id})">
                     Ver registro
                     </button>
                 <button
                     type="button"
                     class="btn btn-danger"
-                    onclick="deleteAnimal(${index})">
+                    onclick="deleteAnimal(${animal.id})">
                     Eliminar
                     </button>
             </td>
@@ -195,4 +210,4 @@ async function listAnimals() {
   });
   handleLoader('hide');
 }
-listAnimals();
+listAnimals(true);

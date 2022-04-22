@@ -2,7 +2,7 @@
   "animals": [
     {
       "id": 1,
-      "name": "Lulu",
+      "name": "Lola",
       "age": 2,
       "animal": "perro",
       "species": "canino",
@@ -11,7 +11,7 @@
     },
     {
       "id": 2,
-      "name": "Minino",
+      "name": "Minina",
       "age": 1,
       "animal": "gato",
       "species": "felino",
@@ -19,13 +19,49 @@
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
     },
     {
-      "id": 3,
-      "name": "Miel",
-      "age": 1,
+      "name": "Coco",
+      "age": 3,
+      "animal": "perro",
+      "species": "canino",
+      "birthDate": "2019-04-15",
+      "description": "Coco es un perrito muy cariñoso",
+      "id": 4
+    },
+    {
+      "name": "Miguelito",
+      "age": 3,
+      "animal": "pajaro",
+      "species": "ave",
+      "birthDate": "2019-04-15",
+      "description": "Miguelito es un loro muy hablador",
+      "id": 5
+    },
+    {
+      "name": "Apolo",
+      "age": "1",
+      "animal": "perro",
+      "species": "canino",
+      "birthDate": "2021-03-21",
+      "description": "Apolo es un perro de raza pitbull",
+      "id": 6
+    },
+    {
+      "name": "Kiko",
+      "age": "2",
+      "animal": "pez",
+      "species": "acuatico",
+      "birthDate": "2022-04-07",
+      "description": "Pez nadador de gran velocidad",
+      "id": 7
+    },
+    {
+      "name": "Dante",
+      "age": "22",
       "animal": "gato",
       "species": "felino",
-      "birthDate": "2020-04-15",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+      "birthDate": "2022-04-07",
+      "description": "AAA",
+      "id": 8
     }
   ]
 }

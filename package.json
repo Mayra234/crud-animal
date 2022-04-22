@@ -2,7 +2,7 @@
   "name": "crud-animal",
   "version": "1.0.0",
   "scripts": {
-    "server": "json-server --watch server/db.json --delay 2000"
+    "server": "json-server --watch server/db.json --delay 2000 --port 4000"
   },
   "devDependencies": {
     "json-server": "^0.17.0"
